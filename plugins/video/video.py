@@ -589,7 +589,6 @@ class VideoDetails(DictMixin):
     def default(self, key):
         defaults = {
             'showingBits' : '0',
-            'episodeNumber' : '0',
             'displayMajorNumber' : '0',
             'displayMinorNumber' : '0',
             'isEpisode' : 'true',
