@@ -362,9 +362,10 @@ class Video(Plugin):
             videos.append(video)
 
         logger.debug('mobileagent: %d useragent: %s' % (useragent.lower().find('mobile'), useragent.lower()))
+        use_mobile = useragent.lower().find('mobile') > 0
         if not use_html:
             t = Template(XML_CONTAINER_TEMPLATE, filter=EncodeUnicode)
-        elif useragent.lower().find('mobile') > 0:
+        elif use_mobile:
             t = Template(HTML_CONTAINER_TEMPLATE_MOBILE, filter=EncodeUnicode)
         else:
             t = Template(HTML_CONTAINER_TEMPLATE, filter=EncodeUnicode)
