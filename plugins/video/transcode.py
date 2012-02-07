@@ -827,9 +827,9 @@ def video_info(inFile, cache=True):
     attrs = {'container': r'Input #0, ([^,]+),',
              'vCodec': r'Video: ([^, ]+)',             # video codec
              'aKbps': r'.*Audio: .+, (.+) (?:kb/s).*',     # audio bitrate
-             'aCodec': r'.*Audio: ([^,]+),.*',             # audio codec
+             'aCodec': r'.*Audio: ([^, ]+)',             # audio codec
              'aFreq': r'.*Audio: .+, (.+) (?:Hz).*',       # audio frequency
-             'mapVideo': r'([0-9]+\.[0-9]+).*: Video:.*'}  # video mapping
+             'mapVideo': r'([0-9]+[.:]+[0-9]+).*: Video:.*'}  # video mapping
 
     for attr in attrs:
         rezre = re.compile(attrs[attr])
@@ -948,12 +948,12 @@ def video_info(inFile, cache=True):
         vInfo['dar1'] = None
 
     # get Audio Stream mapping.
-    rezre = re.compile(r'([0-9]+\.[0-9]+)(.*): Audio:(.*)')
+    rezre = re.compile(r'([0-9]+[.:]+[0-9]+)(.*): Audio:.*')
     x = rezre.search(output)
     amap = []
     if x:
         for x in rezre.finditer(output):
-            amap.append((x.group(1), x.group(2)+x.group(3)))
+            amap.append(x.groups())
     else:
         amap.append(('', ''))
         debug('failed at mapAudio')
