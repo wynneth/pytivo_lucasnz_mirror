@@ -11,9 +11,13 @@ import sys
 from ConfigParser import NoOptionError
 
 def init(argv):
+    global tivos
+    global tivo_names
     global guid
     global config_files
 
+    tivos = {}
+    tivo_names = {}
     guid = ''.join([random.choice(string.ascii_letters) for i in range(10)])
 
     config_win_default = ''
@@ -44,14 +48,10 @@ def init(argv):
     reset()
 
 def reset():
+    global bin_paths
     global config
     global configs_found
-    global tivos
-    global tivo_names
-    global bin_paths
 
-    tivos = {}
-    tivo_names = {}
     bin_paths = {}
 
     config = ConfigParser.ConfigParser()
