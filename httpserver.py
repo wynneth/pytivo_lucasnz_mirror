@@ -141,6 +141,8 @@ class TivoHTTPHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                     if basepath == name:
                         plugin = GetPlugin(container['type'])
                         if hasattr(plugin, command):
+                            self.cname = name
+                            self.container = container
                             method = getattr(plugin, command)
                             method(self, query)
                             return
@@ -173,6 +175,8 @@ class TivoHTTPHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             ## Pass it off to a plugin?
             for name, container in self.server.containers.items():
                 if splitpath[0] == name:
+                    self.cname = name
+                    self.container = container
                     base = os.path.normpath(container['path'])
                     path = os.path.join(base, *splitpath[1:])
                     plugin = GetPlugin(container['type'])
