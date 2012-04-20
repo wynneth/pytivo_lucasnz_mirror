@@ -1,7 +1,7 @@
+import calendar
 import cgi
 import logging
 import os
-import calendar
 import re
 import struct
 import thread
@@ -482,7 +482,7 @@ class BaseVideo(Plugin):
             if use_mobile:
                 t = Template(HTML_CONTAINER_TEMPLATE_MOBILE, filter=EncodeUnicode)
             else:
-            t = Template(HTML_CONTAINER_TEMPLATE, filter=EncodeUnicode)
+                t = Template(HTML_CONTAINER_TEMPLATE, filter=EncodeUnicode)
         else:
             t = Template(XML_CONTAINER_TEMPLATE, filter=EncodeUnicode)
 
