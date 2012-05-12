@@ -271,6 +271,8 @@ def select_audioch(inFile, tsn):
     if video_info(inFile)['aCh'] > 6:
         debug('Too many audio channels for AC-3, using 5.1 instead')
         return '-ac 6'
+    elif video_info(inFile)['aCh']:
+        return '-ac %i' % video_info(inFile)['aCh']
     return ''
 
 def select_audiolang(inFile, tsn):
